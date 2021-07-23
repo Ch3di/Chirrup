@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import { gql } from "@apollo/client";
 import { useForm } from "../utils/hooks";
@@ -7,6 +7,7 @@ import { useMutation } from "@apollo/client";
 import { FETCH_POSTS_QUERY } from "../utils/graphql";
 
 export default function PostForm() {
+  const [err, setErr] = useState(false);
   const { values, onChange, onSubmit } = useForm(createPostCallback, {
     body: ""
   });
@@ -20,27 +21,42 @@ export default function PostForm() {
       proxy.writeQuery({ query: FETCH_POSTS_QUERY, data: newData });
       console.log(newData);
       values.body = "";
+    },
+    onError(e) {
+      setErr(true);
     }
   });
+
   function createPostCallback() {
     createPost();
+    setErr(false);
   }
 
   return (
-    <Form onSubmit={onSubmit}>
-      <h2>Create a post:</h2>
-      <Form.Field>
-        <Form.Input
-          placeholder="Express your thoughts..."
-          name="body"
-          onChange={onChange}
-          value={values.body}
-        />
-        <Button type="submit" color="teal">
-          Submit
-        </Button>
-      </Form.Field>
-    </Form>
+    <>
+      <Form onSubmit={onSubmit}>
+        <h2>Create a post:</h2>
+        <Form.Field>
+          <Form.Input
+            placeholder="Express your thoughts..."
+            name="body"
+            onChange={onChange}
+            value={values.body}
+            error={err}
+          />
+          <Button type="submit" color="teal" disabled={!values.body.trim()}>
+            Submit
+          </Button>
+        </Form.Field>
+      </Form>
+      {error && (
+        <div className="ui error message" style={{ marginBottom: 20 }}>
+          <ul className="list">
+            <li>{error.graphQLErrors[0].message}</li>
+          </ul>
+        </div>
+      )}
+    </>
   );
 }
 
