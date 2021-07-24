@@ -1,4 +1,4 @@
-import Reacti, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Icon, Label } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";

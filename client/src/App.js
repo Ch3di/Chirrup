@@ -10,7 +10,7 @@ import Register from "./pages/Register";
 import MenuBar from "./components/MenuBar";
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./utils/AuthRoute";
-
+import PostPage from "./pages/PostPage";
 function App() {
   return (
     <AuthProvider>
@@ -20,6 +20,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/register" component={Register} />
+          <Route exact path="/posts/:postId" component={PostPage} />
         </Container>
       </Router>
     </AuthProvider>
