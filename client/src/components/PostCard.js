@@ -7,6 +7,7 @@ import { AuthContext } from "../context/auth";
 import LikeButton from "./LikeButton";
 import DeleteButton from "./DeleteButton";
 import Popup from "./Popup";
+import colors from "../utils/colors";
 
 export default function PostCard({
   post: { id, body, createdAt, username, likesCount, commentsCount, likes }
@@ -32,10 +33,10 @@ export default function PostCard({
         <LikeButton user={user} post={{ id, likes, likesCount }} />
         <Popup content="Comment on post">
           <Button as={Link} to={`/posts/${id}`} labelPosition="right">
-            <Button color="blue" basic>
+            <Button color={colors.commentButton} basic>
               <Icon name="comments" />
             </Button>
-            <Label basic color="teal" pointing="left">
+            <Label basic color={colors.commentButton} pointing="left">
               {commentsCount}
             </Label>
           </Button>

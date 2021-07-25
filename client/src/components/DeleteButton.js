@@ -4,6 +4,7 @@ import { Button, Confirm, Icon } from "semantic-ui-react";
 
 import { FETCH_POSTS_QUERY } from "../utils/graphql";
 import Popup from "./Popup";
+import colors from "../utils/colors";
 
 export default function DeleteButton({ postId, commentId, callback }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -31,8 +32,9 @@ export default function DeleteButton({ postId, commentId, callback }) {
     <>
       <Popup content={commentId ? "Delete comment" : "Delete post"}>
         <Button
+          basic
           as="div"
-          color="red"
+          color={colors.deleteButton}
           floated="right"
           onClick={() => setConfirmOpen(true)}
         >

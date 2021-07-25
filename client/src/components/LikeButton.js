@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { gql, useMutation } from "@apollo/client";
 
 import Popup from "./Popup";
+import colors from "../utils/colors";
 
 export default function LikeButton({ user, post: { id, likesCount, likes } }) {
   const [liked, setLiked] = useState(false);
@@ -21,16 +22,16 @@ export default function LikeButton({ user, post: { id, likesCount, likes } }) {
   });
   const likeButton = user ? (
     liked ? (
-      <Button color="teal">
+      <Button color={colors.likeButton}>
         <Icon name="heart" />
       </Button>
     ) : (
-      <Button color="teal" basic>
+      <Button color={colors.likeButton} basic>
         <Icon name="heart" />
       </Button>
     )
   ) : (
-    <Button as={Link} to="/login" color="teal" basic>
+    <Button as={Link} to="/login" color={colors.likeButton} basic>
       <Icon name="heart" />
     </Button>
   );
@@ -39,7 +40,7 @@ export default function LikeButton({ user, post: { id, likesCount, likes } }) {
     <Popup content={liked ? "Unlike" : "Like"}>
       <Button as="div" labelPosition="right" onClick={likePost}>
         {likeButton}
-        <Label basic color="teal" pointing="left">
+        <Label basic color={colors.likeButton} pointing="left">
           {likesCount}
         </Label>
       </Button>

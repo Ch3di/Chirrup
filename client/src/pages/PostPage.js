@@ -15,6 +15,7 @@ import { AuthContext } from "../context/auth";
 import LikeButton from "../components/LikeButton";
 import DeleteButton from "../components/DeleteButton";
 import Popup from "../components/Popup";
+import colors from "../utils/colors";
 
 export default function PostPage(props) {
   const postId = props.match.params.postId;
@@ -110,7 +111,7 @@ export default function PostPage(props) {
                       />
                       <button
                         type="submit"
-                        className="ui button teal"
+                        className={`ui button ${colors.primary}`}
                         disabled={comment.trim() === ""}
                         onClick={createComment}
                       >

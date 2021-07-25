@@ -5,6 +5,7 @@ import { useForm } from "../utils/hooks";
 import { useMutation } from "@apollo/client";
 
 import { FETCH_POSTS_QUERY } from "../utils/graphql";
+import colors from "../utils/colors";
 
 export default function PostForm() {
   const [err, setErr] = useState(false);
@@ -44,7 +45,11 @@ export default function PostForm() {
             value={values.body}
             error={err}
           />
-          <Button type="submit" color="teal" disabled={!values.body.trim()}>
+          <Button
+            type="submit"
+            color={colors.primary}
+            disabled={!values.body.trim()}
+          >
             Submit
           </Button>
         </Form.Field>
