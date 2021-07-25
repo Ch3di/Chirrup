@@ -50,7 +50,7 @@ export default function PostForm() {
             color={colors.primary}
             disabled={!values.body.trim()}
           >
-            Submit
+            Post it
           </Button>
         </Form.Field>
       </Form>

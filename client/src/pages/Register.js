@@ -5,6 +5,7 @@ import { useMutation } from "@apollo/client";
 
 import { useForm } from "../utils/hooks";
 import { AuthContext } from "../context/auth";
+import colors from "../utils/colors";
 
 export default function Register(props) {
   const context = useContext(AuthContext);
@@ -37,6 +38,8 @@ export default function Register(props) {
       <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
         <h1>Register</h1>
         <Form.Input
+          icon="user"
+          iconPosition="left"
           label="Username"
           placeholder="Username..."
           name="username"
@@ -46,6 +49,8 @@ export default function Register(props) {
           error={errors.username ? true : false}
         />
         <Form.Input
+          icon="mail"
+          iconPosition="left"
           label="Email"
           placeholder="Email..."
           name="email"
@@ -55,6 +60,8 @@ export default function Register(props) {
           error={errors.email ? true : false}
         />
         <Form.Input
+          icon="key"
+          iconPosition="left"
           label="Password"
           placeholder="Password..."
           name="password"
@@ -64,6 +71,8 @@ export default function Register(props) {
           error={errors.password ? true : false}
         />
         <Form.Input
+          icon="key"
+          iconPosition="left"
           label="Confirm Password"
           placeholder="Confirm your password..."
           name="confirmPassword"
@@ -72,7 +81,7 @@ export default function Register(props) {
           onChange={onChange}
           error={errors.confirmPassword ? true : false}
         />
-        <Button type="submit" primary>
+        <Button type="submit" color={colors.primary}>
           Register
         </Button>
       </Form>

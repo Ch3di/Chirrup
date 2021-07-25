@@ -4,6 +4,7 @@ import { gql, useMutation } from "@apollo/client";
 
 import { useForm } from "../utils/hooks";
 import { AuthContext } from "../context/auth";
+import colors from "../utils/colors";
 
 export default function Login(props) {
   const context = useContext(AuthContext);
@@ -33,6 +34,8 @@ export default function Login(props) {
       <Form onSubmit={onSubmit} noValidate className={loading ? "loading" : ""}>
         <h1>Login</h1>
         <Form.Input
+          icon="user"
+          iconPosition="left"
           label="Username"
           placeholder="Username..."
           name="username"
@@ -42,6 +45,8 @@ export default function Login(props) {
           error={errors.username ? true : false}
         />
         <Form.Input
+          icon="key"
+          iconPosition="left"
           label="Password"
           placeholder="Password..."
           name="password"
@@ -50,7 +55,7 @@ export default function Login(props) {
           onChange={onChange}
           error={errors.password ? true : false}
         />
-        <Button type="submit" primary>
+        <Button type="submit" color={colors.primary}>
           Register
         </Button>
       </Form>
