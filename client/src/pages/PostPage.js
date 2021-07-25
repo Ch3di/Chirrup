@@ -14,6 +14,7 @@ import moment from "moment";
 import { AuthContext } from "../context/auth";
 import LikeButton from "../components/LikeButton";
 import DeleteButton from "../components/DeleteButton";
+import Popup from "../components/Popup";
 
 export default function PostPage(props) {
   const postId = props.match.params.postId;
@@ -73,18 +74,20 @@ export default function PostPage(props) {
               <hr />
               <Card.Content extra>
                 <LikeButton user={user} post={{ id, likesCount, likes }} />
-                <Button
-                  as="div"
-                  labelPosition="right"
-                  onClick={() => console.log("comment on post")}
-                >
-                  <Button color="blue" basic>
-                    <Icon name="comments" />
+                <Popup content="Comment on post">
+                  <Button
+                    as="div"
+                    labelPosition="right"
+                    onClick={() => console.log("comment on post")}
+                  >
+                    <Button color="blue" basic>
+                      <Icon name="comments" />
+                    </Button>
+                    <Label basic color="blue" pointing="left">
+                      {commentsCount}
+                    </Label>
                   </Button>
-                  <Label basic color="blue" pointing="left">
-                    {commentsCount}
-                  </Label>
-                </Button>
+                </Popup>
                 {user && user.username === username && (
                   <DeleteButton postId={id} callback={deletePostCallback} />
                 )}
