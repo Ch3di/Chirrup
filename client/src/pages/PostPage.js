@@ -58,10 +58,11 @@ export default function PostPage(props) {
       <Grid>
         <Grid.Row>
           <Grid.Column width={2}>
-            <Image
-              floated="right"
-              size="small"
-              src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+            <Icon
+              className="right floated"
+              color="grey"
+              size="massive"
+              name="user circle"
             />
           </Grid.Column>
           <Grid.Column width={10}>

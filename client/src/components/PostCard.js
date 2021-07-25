@@ -13,17 +13,14 @@ export default function PostCard({
 }) {
   const { user } = useContext(AuthContext);
 
-  const likePost = () => {
-    console.log("liked");
-  };
-
   return (
     <Card fluid>
       <Card.Content>
-        <Image
-          floated="right"
-          size="mini"
-          src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+        <Icon
+          className="right floated"
+          color="grey"
+          size="big"
+          name="user circle"
         />
         <Card.Header>{username}</Card.Header>
         <Card.Meta as={Link} to={`/posts/${id}`}>
