@@ -6,8 +6,9 @@ import { ApolloProvider } from "@apollo/client";
 import { setContext } from "apollo-link-context";
 
 import App from "./App";
+import config from "./utils/config";
 
-const httpLink = createHttpLink({ uri: "http://localhost:5000" });
+const httpLink = createHttpLink({ uri: config.apolloServerUri });
 
 const authLink = setContext(() => {
   const token = localStorage.getItem("jwt");
