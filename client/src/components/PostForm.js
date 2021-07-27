@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import { useForm } from "../utils/hooks";
 import { useMutation } from "@apollo/client";
 
-import { FETCH_POSTS_QUERY } from "../utils/graphql";
+import { FETCH_POSTS_QUERY, CREATE_POST_MUTATION } from "../utils/graphql";
 import colors from "../utils/colors";
 
 export default function PostForm() {
@@ -66,26 +66,3 @@ export default function PostForm() {
     </>
   );
 }
-
-const CREATE_POST_MUTATION = gql`
-  mutation createPost($body: String!) {
-    createPost(body: $body) {
-      id
-      body
-      createdAt
-      username
-      likes {
-        id
-        username
-        createdAt
-      }
-      likesCount
-      comments {
-        id
-        body
-        createdAt
-      }
-      commentsCount
-    }
-  }
-`;

@@ -5,6 +5,10 @@ import { Button, Confirm, Icon } from "semantic-ui-react";
 import { FETCH_POSTS_QUERY } from "../utils/graphql";
 import Popup from "./Popup";
 import colors from "../utils/colors";
+import {
+  DELETE_POST_MUTATION,
+  DELETE_COMMENT_MUTATION
+} from "../utils/graphql";
 
 export default function DeleteButton({ postId, commentId, callback }) {
   const [confirmOpen, setConfirmOpen] = useState(false);
@@ -49,24 +53,3 @@ export default function DeleteButton({ postId, commentId, callback }) {
     </>
   );
 }
-
-const DELETE_POST_MUTATION = gql`
-  mutation deletePost($postId: String!) {
-    deletePost(postId: $postId)
-  }
-`;
-
-const DELETE_COMMENT_MUTATION = gql`
-  mutation deleteComment($postId: ID!, $commentId: ID!) {
-    deleteComment(postId: $postId, commentId: $commentId) {
-      id
-      comments {
-        id
-        username
-        createdAt
-        body
-      }
-      commentsCount
-    }
-  }
-`;
