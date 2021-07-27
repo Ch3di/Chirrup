@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Button, Card, Icon, Label, Image } from "semantic-ui-react";
 import moment from "moment";
 import { Link } from "react-router-dom";

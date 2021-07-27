@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Form, Button } from "semantic-ui-react";
 import { gql, useMutation } from "@apollo/client";
 
@@ -56,7 +56,7 @@ export default function Login(props) {
           error={errors.password ? true : false}
         />
         <Button type="submit" color={colors.primary}>
-          Register
+          Login
         </Button>
       </Form>
       {Object.keys(errors).length > 0 && (

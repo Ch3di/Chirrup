@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { Form, Button } from "semantic-ui-react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Form, Button } from "semantic-ui-react";
 import { gql } from "@apollo/client";
 import { useForm } from "../utils/hooks";
@@ -19,8 +19,10 @@ export default function PostForm() {
         query: FETCH_POSTS_QUERY
       });
       const newData = [result.data.createPost, ...data.getPosts];
-      proxy.writeQuery({ query: FETCH_POSTS_QUERY, data: newData });
-      console.log(newData);
+      proxy.writeQuery({
+        query: FETCH_POSTS_QUERY,
+        data: { getPosts: newData }
+      });
       values.body = "";
     },
     onError(e) {

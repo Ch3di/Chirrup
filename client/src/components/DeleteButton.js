@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Button, Confirm, Icon } from "semantic-ui-react";
 
@@ -20,7 +20,7 @@ export default function DeleteButton({ postId, commentId, callback }) {
         let newData = data.getPosts.filter((p) => p.id !== postId);
         proxy.writeQuery({
           query: FETCH_POSTS_QUERY,
-          data: newData
+          data: { getPosts: newData }
         });
       }
       if (callback) callback();

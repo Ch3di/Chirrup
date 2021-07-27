@@ -11,6 +11,7 @@ import MenuBar from "./components/MenuBar";
 import { AuthProvider } from "./context/auth";
 import AuthRoute from "./utils/AuthRoute";
 import PostPage from "./pages/PostPage";
+
 function App() {
   return (
     <AuthProvider>

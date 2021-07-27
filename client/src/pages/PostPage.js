@@ -1,14 +1,6 @@
-import React, { useContext, useState, useRef } from "react";
-import { gql, useQuery, useMutation } from "@apollo/client";
-import {
-  Grid,
-  Image,
-  Card,
-  Icon,
-  Label,
-  Button,
-  Form
-} from "semantic-ui-react";
+import { useContext, useState, useRef } from "react";
+import { useQuery, useMutation } from "@apollo/client";
+import { Grid, Card, Icon, Label, Button, Form } from "semantic-ui-react";
 import moment from "moment";
 
 import { AuthContext } from "../context/auth";
@@ -16,6 +8,7 @@ import LikeButton from "../components/LikeButton";
 import DeleteButton from "../components/DeleteButton";
 import Popup from "../components/Popup";
 import colors from "../utils/colors";
+import { FETCH_POST_QUERY, POST_COMMENT_MUTATION } from "../utils/graphql";
 
 export default function PostPage(props) {
   const postId = props.match.params.postId;
@@ -59,12 +52,7 @@ export default function PostPage(props) {
       <Grid>
         <Grid.Row>
           <Grid.Column width={2}>
-            <Icon
-              className="right floated"
-              color="grey"
-              size="massive"
-              name="user circle"
-            />
+            <Icon color="grey" size="massive" name="user circle" />
           </Grid.Column>
           <Grid.Column width={10}>
             <Card fluid>
@@ -77,11 +65,7 @@ export default function PostPage(props) {
               <Card.Content extra>
                 <LikeButton user={user} post={{ id, likesCount, likes }} />
                 <Popup content="Comment on post">
-                  <Button
-                    as="div"
-                    labelPosition="right"
-                    onClick={() => console.log("comment on post")}
-                  >
+                  <Button as="div" labelPosition="right">
                     <Button color="blue" basic>
                       <Icon name="comments" />
                     </Button>
@@ -142,40 +126,3 @@ export default function PostPage(props) {
 
   return postMarkup;
 }
-
-const POST_COMMENT_MUTATION = gql`
-  mutation createComment($postId: ID!, $body: String!) {
-    createComment(postId: $postId, body: $body) {
-      id
-      comments {
-        id
-        body
-        createdAt
-        username
-      }
-      commentsCount
-    }
-  }
-`;
-
-const FETCH_POST_QUERY = gql`
-  query ($postId: String!) {
-    getPost(postId: $postId) {
-      id
-      body
-      createdAt
-      likesCount
-      commentsCount
-      username
-      likes {
-        username
-      }
-      comments {
-        id
-        username
-        createdAt
-        body
-      }
-    }
-  }
-`;
