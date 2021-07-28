@@ -2,17 +2,21 @@ const User = require("../../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { UserInputError } = require("apollo-server");
+const config = require("config");
 
-const { SECRET_KEY } = require("../../config");
 const {
   validateRegisterInput,
   validateLoginInput
 } = require("../../utils/validators");
 
 const generateToken = ({ _id, username, email }) => {
-  const token = jwt.sign({ id: _id, username, email }, SECRET_KEY, {
-    expiresIn: "1h"
-  });
+  const token = jwt.sign(
+    { id: _id, username, email },
+    config.get("SECRET_KEY"),
+    {
+      expiresIn: "1h"
+    }
+  );
   return token;
 };
 

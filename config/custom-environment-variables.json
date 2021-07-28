@@ -1,0 +1,5 @@
+{
+  "DB_URI": "CU_DB_URI",
+  "SECRET_KEY": "CU_SECRET_KEY",
+  "PORT": "CU_PORT"
+}
